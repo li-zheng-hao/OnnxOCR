@@ -23,12 +23,12 @@ def ocr_service():
                         "error": "Invalid request, 'file' field is required.",
                     }
                 ),
-                400,
+                200,
             )
 
         file = request.files["file"]
         if file.filename == "":
-            return jsonify({"success": False, "error": "No selected file"}), 400
+            return jsonify({"success": False, "error": "No selected file"}), 200
 
         # 读取图片文件
         try:
@@ -40,7 +40,7 @@ def ocr_service():
                     jsonify(
                         {"success": False, "error": "Failed to decode image from file."}
                     ),
-                    400,
+                    200,
                 )
         except Exception as e:
             return (
@@ -50,7 +50,7 @@ def ocr_service():
                         "error": f"Image decoding failed: {str(e)}",
                     }
                 ),
-                400,
+                200,
             )
 
         # 执行 OCR
@@ -94,7 +94,7 @@ def ocr_service():
 
     except Exception as e:
         # 捕获所有异常并返回错误信息
-        return jsonify({"success": False, "error": f"An error occurred: {str(e)}"}), 500
+        return jsonify({"success": False, "error": f"An error occurred: {str(e)}"}), 200
 
 
 if __name__ == "__main__":
