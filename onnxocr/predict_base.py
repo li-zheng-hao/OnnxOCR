@@ -7,7 +7,17 @@ class PredictBase(object):
     def get_onnx_session(self, model_dir, use_gpu):
         # 使用gpu
         if use_gpu:
-            providers =[('CUDAExecutionProvider',{"cudnn_conv_algo_search": "DEFAULT"}),'CPUExecutionProvider']
+            # 修改cuDNN配置以避免Fallback模式
+            providers =[
+                ('CUDAExecutionProvider', {
+                    "cudnn_conv_algo_search": "EXHAUSTIVE",
+                    "do_copy_in_default_stream": True,
+                    "cudnn_conv_use_max_workspace": True,
+                    "arena_extend_strategy": "kNextPowerOfTwo",
+                    "gpu_mem_limit": 2 * 1024 * 1024 * 1024,  # 2GB
+                }),
+                'CPUExecutionProvider'
+            ]
         else:
             providers =['CPUExecutionProvider']
 

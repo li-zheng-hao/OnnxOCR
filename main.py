@@ -8,7 +8,7 @@ from onnxocr.onnx_paddleocr import ONNXPaddleOcr
 app = Flask(__name__)
 
 # 初始化 OCR 模型
-model = ONNXPaddleOcr(use_angle_cls=False, use_gpu=False)
+model = ONNXPaddleOcr(use_angle_cls=False, use_gpu=True)
 
 
 @app.route("/ocr", methods=["POST"])
