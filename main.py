@@ -99,4 +99,4 @@ def ocr_service():
 
 if __name__ == "__main__":
     # 启动 Flask 服务
-    app.run(host="0.0.0.0", port=5005, debug=False)
+    app.run(host="0.0.0.0", port=8000, debug=False)
