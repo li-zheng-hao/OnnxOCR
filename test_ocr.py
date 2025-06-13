@@ -7,16 +7,16 @@ import time
 # 固定到onnx路径·
 # sys.path.append('./paddle_to_onnx/onnx')
 
-model = ONNXPaddleOcr(use_angle_cls=False, use_gpu=False)
+model = ONNXPaddleOcr(use_angle_cls=False, use_gpu=True)
 
-
-img = cv2.imread("./onnxocr/test_images/715873facf064583b44ef28295126fa7.jpg")
-s = time.time()
-result = model.ocr(img)
-e = time.time()
-print("total time: {:.3f}".format(e - s))
-print("result:", result)
-for box in result[0]:
-    print(box)
+for i in range(1,10):
+    img = cv2.imread("./1.png")
+    s = time.time()
+    result = model.ocr(img)
+    e = time.time()
+    print("total time: {:.3f}".format(e - s))
+# print("result:", result)
+# for box in result[0]:
+    # print(box)
 
 # sav2Img(img, result, name=str(time.time()) + ".jpg")
